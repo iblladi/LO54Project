@@ -1,6 +1,8 @@
 package fr.utbm.lo54.coursesession.entity;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,8 +14,10 @@ import java.util.Objects;
 public class Course implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GenericGenerator(name = "sequence_crs_id", strategy = "fr.utbm.lo54.coursesession.sequence.CourseIdGenerator")
+    @GeneratedValue(generator = "sequence_crs_id")
     private String id;
+
     private String title;
 
     public Course() {
