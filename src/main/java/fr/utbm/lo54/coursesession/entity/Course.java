@@ -1,4 +1,4 @@
-package fr.utbm.lo54.coursesession.fr.utbm.lo54.coursesession.entity;
+package fr.utbm.lo54.coursesession.entity;
 
 
 import javax.persistence.Entity;
