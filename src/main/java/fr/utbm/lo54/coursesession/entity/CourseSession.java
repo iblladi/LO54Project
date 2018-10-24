@@ -1,8 +1,12 @@
 package fr.utbm.lo54.coursesession.entity;
 
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -15,10 +19,13 @@ public class CourseSession implements Serializable {
     @Column(name = "courseSession_id")
     private Long id;
 
-    private LocalDateTime startDate;
+    @DateTimeFormat(iso= ISO.DATE)
+    private LocalDate startDate;
 
-    private LocalDateTime endEnd;
+    @DateTimeFormat(iso=ISO.DATE)
+    private LocalDate endEnd;
 
+    @NotNull
     private int max;
 
     @ManyToOne
@@ -35,7 +42,7 @@ public class CourseSession implements Serializable {
     public CourseSession() {
     }
 
-    public CourseSession(LocalDateTime startDate, LocalDateTime endEnd, int max, Location location, Course course) {
+    public CourseSession(LocalDate startDate, LocalDate endEnd, int max, Location location, Course course) {
         this.startDate = startDate;
         this.endEnd = endEnd;
         this.max = max;
@@ -51,19 +58,19 @@ public class CourseSession implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndEnd() {
+    public LocalDate getEndEnd() {
         return endEnd;
     }
 
-    public void setEndEnd(LocalDateTime endEnd) {
+    public void setEndEnd(LocalDate endEnd) {
         this.endEnd = endEnd;
     }
 

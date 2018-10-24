@@ -2,6 +2,7 @@ package fr.utbm.lo54.coursesession.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
@@ -14,14 +15,19 @@ public class Client implements Serializable {
     @Column(name = "client_id")
     private Long id;
 
+    @NotNull
     private String lastName;
 
+    @NotNull
     private String firstName;
 
+    @NotNull
     private String address;
 
+    @NotNull
     private String phone;
 
+    @NotNull
     private String email;
 
     @OneToMany(mappedBy = "courseSession")

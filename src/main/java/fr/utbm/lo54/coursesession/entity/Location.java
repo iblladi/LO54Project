@@ -1,6 +1,7 @@
 package fr.utbm.lo54.coursesession.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
@@ -13,6 +14,7 @@ public class Location implements Serializable {
     @Column(name = "location_id")
     private Long id;
 
+    @NotNull
     private String city;
 
     @OneToMany(mappedBy = "location")

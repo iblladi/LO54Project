@@ -4,6 +4,7 @@ package fr.utbm.lo54.coursesession.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
@@ -17,6 +18,7 @@ public class Course implements Serializable {
     @Column(name = "course_id")
     private String id;
 
+    @NotNull
     private String title;
 
     @OneToMany(mappedBy = "course")
