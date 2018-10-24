@@ -18,7 +18,9 @@ public class CourseIdGenerator implements IdentifierGenerator {
     public Serializable generate(SharedSessionContractImplementor session, Object obj) throws HibernateException {
 
         Serializable generatedId = null;
+
         String prefix = "CRS";
+
         Connection connection = session.connection();
 
         try {
@@ -35,7 +37,6 @@ public class CourseIdGenerator implements IdentifierGenerator {
 
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
