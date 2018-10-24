@@ -18,7 +18,7 @@ public class CourseIdGenerator implements IdentifierGenerator {
     public Serializable generate(SharedSessionContractImplementor session, Object obj) throws HibernateException {
 
         Serializable generatedId = null;
-        String prefix = "DEP";
+        String prefix = "CRS";
         Connection connection = session.connection();
 
         try {
