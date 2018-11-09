@@ -1,7 +1,9 @@
 package fr.utbm.lo54.coursesession.service;
 
+import fr.utbm.lo54.coursesession.dao.CourseRepository;
 import fr.utbm.lo54.coursesession.entity.Course;
 import fr.utbm.lo54.coursesession.metier.CourseMetier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,24 +11,27 @@ import java.util.List;
 @Service
 public class CourseService implements CourseMetier {
 
+    @Autowired
+    private CourseRepository courseRepository;
+
     @Override
     public List<Course> listCourse() {
-        return null;
+        return courseRepository.findAll();
     }
 
     @Override
     public Course saveCourse(Course c) {
-        return null;
+        return courseRepository.save(c);
     }
 
     @Override
     public void updateCourse(Course c) {
-
+        saveCourse(c);
     }
 
     @Override
-    public void deleteCourse(Long id) {
-
+    public void deleteCourse(String id) {
+        courseRepository.deleteById(id);
     }
 
     @Override
@@ -35,7 +40,7 @@ public class CourseService implements CourseMetier {
     }
 
     @Override
-    public Course findOne(Long id) {
-        return null;
+    public Course findOne(String id) {
+        return courseRepository.getOne(id);
     }
 }

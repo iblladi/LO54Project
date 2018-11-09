@@ -12,10 +12,10 @@ public interface CourseMetier {
 
     public void updateCourse(Course c);
 
-    public void deleteCourse(Long id);
+    public void deleteCourse(String id);
 
     public boolean CourseExists(Course c);
 
-    public Course findOne(Long id);
+    public Course findOne(String id);
 
 }
