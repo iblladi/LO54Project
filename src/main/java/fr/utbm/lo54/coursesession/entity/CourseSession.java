@@ -28,7 +28,7 @@ public class CourseSession implements Serializable {
     private LocalDate endEnd;
 
     @NotNull
-    private int max;
+    private int nbplaces = 10;
 
     @ManyToOne
     @JoinColumn(name = "location_id")
@@ -44,11 +44,11 @@ public class CourseSession implements Serializable {
     public CourseSession() {
     }
 
-    public CourseSession(String available, LocalDate startDate, LocalDate endEnd, int max, Location location, Course course) {
+    public CourseSession(String available, LocalDate startDate, LocalDate endEnd, int nbplaces, Location location, Course course) {
         this.available = available;
         this.startDate = startDate;
         this.endEnd = endEnd;
-        this.max = max;
+        this.nbplaces = nbplaces;
         this.location = location;
         this.course = course;
     }
@@ -85,12 +85,12 @@ public class CourseSession implements Serializable {
         this.endEnd = endEnd;
     }
 
-    public int getMax() {
-        return max;
+    public int getNbplaces() {
+        return nbplaces;
     }
 
-    public void setMax(int max) {
-        this.max = max;
+    public void setNbplaces(int nbplaces) {
+        this.nbplaces = nbplaces;
     }
 
     public Location getLocation() {
@@ -114,7 +114,7 @@ public class CourseSession implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CourseSession that = (CourseSession) o;
-        return max == that.max &&
+        return nbplaces == that.nbplaces &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(available, that.available) &&
                 Objects.equals(startDate, that.startDate) &&
@@ -126,7 +126,7 @@ public class CourseSession implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, available, startDate, endEnd, max, location, course, couseSessionClients);
+        return Objects.hash(id, available, startDate, endEnd, nbplaces, location, course, couseSessionClients);
     }
 
     @Override
@@ -136,7 +136,7 @@ public class CourseSession implements Serializable {
                 ", available='" + available + '\'' +
                 ", startDate=" + startDate +
                 ", endEnd=" + endEnd +
-                ", max=" + max +
+                ", nbplaces=" + nbplaces +
                 ", location=" + location +
                 ", course=" + course +
                 ", couseSessionClients=" + couseSessionClients +
