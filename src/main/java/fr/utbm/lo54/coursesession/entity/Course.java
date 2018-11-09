@@ -13,8 +13,6 @@ import java.util.Objects;
 public class Course implements Serializable {
 
     @Id
-    @GenericGenerator(name = "sequence_crs_id", strategy = "fr.utbm.lo54.coursesession.sequence.CourseIdGenerator")
-    @GeneratedValue(generator = "sequence_crs_id")
     @Column(name = "course_id")
     private String id;
 
@@ -27,7 +25,8 @@ public class Course implements Serializable {
     public Course() {
     }
 
-    public Course(String title) {
+    public Course(String id, String title) {
+        this.id = id;
         this.title = title;
     }
 

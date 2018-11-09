@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "CourseSession_Client")
+@IdClass(CourseSessionClientId.class)
 public class CourseSessionClient implements Serializable {
 
     @Id
