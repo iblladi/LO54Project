@@ -29,18 +29,22 @@ public class Client implements Serializable {
 
     private String email;
 
+    @NotNull
+    private String password;
+
     @OneToMany(mappedBy = "courseSession")
     private Collection<CourseSessionClient> couseSessionClients;
 
     public Client() {
     }
 
-    public Client(String lastName, String firstName, String address, String phone, String email) {
+    public Client(String lastName, String firstName, String address, String phone, String email, String password) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.address = address;
         this.phone = phone;
         this.email = email;
+        this.password = password;
     }
 
     public Long getId() {
@@ -91,6 +95,14 @@ public class Client implements Serializable {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,12 +113,14 @@ public class Client implements Serializable {
                 Objects.equals(firstName, client.firstName) &&
                 Objects.equals(address, client.address) &&
                 Objects.equals(phone, client.phone) &&
-                Objects.equals(email, client.email);
+                Objects.equals(email, client.email) &&
+                Objects.equals(password, client.password) &&
+                Objects.equals(couseSessionClients, client.couseSessionClients);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastName, firstName, address, phone, email);
+        return Objects.hash(id, lastName, firstName, address, phone, email, password, couseSessionClients);
     }
 
     @Override
@@ -118,6 +132,8 @@ public class Client implements Serializable {
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", couseSessionClients=" + couseSessionClients +
                 '}';
     }
 }

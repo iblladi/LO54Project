@@ -19,6 +19,8 @@ public class CourseSession implements Serializable {
     @Column(name = "courseSession_id")
     private Long id;
 
+    private String available = "Disponible";
+
     @DateTimeFormat(iso= ISO.DATE)
     private LocalDate startDate;
 
@@ -42,7 +44,8 @@ public class CourseSession implements Serializable {
     public CourseSession() {
     }
 
-    public CourseSession(LocalDate startDate, LocalDate endEnd, int max, Location location, Course course) {
+    public CourseSession(String available, LocalDate startDate, LocalDate endEnd, int max, Location location, Course course) {
+        this.available = available;
         this.startDate = startDate;
         this.endEnd = endEnd;
         this.max = max;
@@ -56,6 +59,14 @@ public class CourseSession implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public LocalDate getStartDate() {
@@ -105,26 +116,30 @@ public class CourseSession implements Serializable {
         CourseSession that = (CourseSession) o;
         return max == that.max &&
                 Objects.equals(id, that.id) &&
+                Objects.equals(available, that.available) &&
                 Objects.equals(startDate, that.startDate) &&
                 Objects.equals(endEnd, that.endEnd) &&
                 Objects.equals(location, that.location) &&
-                Objects.equals(course, that.course);
+                Objects.equals(course, that.course) &&
+                Objects.equals(couseSessionClients, that.couseSessionClients);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, startDate, endEnd, max, location, course);
+        return Objects.hash(id, available, startDate, endEnd, max, location, course, couseSessionClients);
     }
 
     @Override
     public String toString() {
         return "CourseSession{" +
                 "id=" + id +
+                ", available='" + available + '\'' +
                 ", startDate=" + startDate +
                 ", endEnd=" + endEnd +
                 ", max=" + max +
                 ", location=" + location +
                 ", course=" + course +
+                ", couseSessionClients=" + couseSessionClients +
                 '}';
     }
 }
