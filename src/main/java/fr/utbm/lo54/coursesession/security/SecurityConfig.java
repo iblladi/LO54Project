@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -56,28 +57,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		http
-			.authorizeRequests()			// AUTORISER LES REQUETES HTTP 
-				.anyRequest()				//	ET N'IMPORTE QUELLE REQUETE
-					.authenticated()		//	QUE SI LE PERSONNEL EST AUTHENTIFIÉ
-						.and()				
+                .anonymous()
+                    .and()
+                .authorizeRequests()
+                    .antMatchers("/index","/")
+                        .permitAll()
+                    .anyRequest()
+                        .authenticated()//	QUE SI LE PERSONNEL EST AUTHENTIFIÉ
+                            .and()
 						
-			.formLogin()					// PAGE D'AUTHENTIFICATION
-				.loginPage("/login")
-						.defaultSuccessUrl("/index")	//SI REQUETE 200 OK --> PAGE D'ACCEUIL
+			    .formLogin()					// PAGE D'AUTHENTIFICATION
+				    .loginPage("/login")
+						.defaultSuccessUrl("/home")	//SI REQUETE 200 OK --> PAGE D'ACCEUIL
 							.failureUrl("/login?error")	//SINON REDIRECTION PAGE D'AUTHENTIFICATION
 								.permitAll()
 									.and()
 									
-			.logout()									//SE DECONNECTER
-				.logoutUrl("/logout")
-					.deleteCookies("JSESSIONID")		//SUPPRESSION DES COOKIES ET DE LA SESSION
-						.invalidateHttpSession(true)	//SESSION INVALIDE APRES DÉCONNEXION
-							.permitAll()
-								.and()
+                .logout()									//SE DECONNECTER
+                    .logoutUrl("/logout")
+                        .deleteCookies("JSESSIONID")		//SUPPRESSION DES COOKIES ET DE LA SESSION
+                            .invalidateHttpSession(true)	//SESSION INVALIDE APRES DÉCONNEXION
+                                .permitAll()
+                                    .and()
 								
 			.exceptionHandling().accessDeniedPage("/403");	//ERREUR 403 (REQUETE NON AUTORISÉE)
 			
 	}
 
-	
 }

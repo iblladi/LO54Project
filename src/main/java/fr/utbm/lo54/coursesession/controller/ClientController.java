@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 public class ClientController {
@@ -19,9 +18,16 @@ public class ClientController {
 
     @RequestMapping(value= {"/index","/"})
     public String index(Model model, Principal p, HttpServletRequest request) {
+        //
+        return "index";
+    }
+
+
+    @RequestMapping(value= {"/home"})
+    public String home(Model model, Principal p, HttpServletRequest request) {
         Client client = clientMetier.findByEmail(p.getName());
         model.addAttribute("profil", client);
-        return "index";
+        return "home";
     }
 
     /*PROFIL*/

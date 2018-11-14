@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="utf-8"/>
+    <title>Home</title>
+
+    <style>
+        .banner{width: 100%;max-width: 100%;
+        }.ban{width: 100%;max-width: 100%;
+         }.ban img {width: 100%;max-width: 100%;
+          }.inner-banner{position: absolute;top: 60%;width: 100%;text-align: center;
+           }.inner-banner h1 {color: #ffffff;text-shadow: 2px 2px 30px #3498DB;
+            }.inner-banner .btn-custom{background-color: #3498DB;color: #ffffff;
+             }.inner-banner .btn-custom:hover{background-color: #2C3E50
+              }
+
+        @media screen and (min-width: 100px) and (max-width: 800px) {
+            .inner-banner {
+                position: absolute;top: 70%;width: 100%;text-align:center;
+            }
+        }
+    </style>
+
+
+
+
+</head>
+<body>
+
+<div layout:fragment="content">
+    <section class="container-fluid banner">
+
+        <div class="ban">
+            <img src="http://www.blueskypersonnel.com/wp-content/uploads/2014/06/IMG_1263.jpg"  alt="travail"/>
+        </div>
+
+        <div class="inner-banner" th:object="${profil}">
+            <h1>Bonjour <label th:text="*{lastName}"></label> !</h1>
+            <a class="btn btn-custom " th:href="@{profil}"> Voir votre profil </a>
+        </div>
+
+    </section>
+</div>
+
+
+</body>
+</html>
