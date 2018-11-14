@@ -18,4 +18,6 @@ public interface CourseSessionClientMetier {
 
     public CourseSessionClient findOne(Long id);
 
+    public int nbInscrits(Long clientId, Long courseSessionId);
+
 }

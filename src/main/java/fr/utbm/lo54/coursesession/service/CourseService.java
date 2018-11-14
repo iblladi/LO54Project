@@ -4,6 +4,8 @@ import fr.utbm.lo54.coursesession.dao.CourseRepository;
 import fr.utbm.lo54.coursesession.entity.Course;
 import fr.utbm.lo54.coursesession.metier.CourseMetier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,5 +44,10 @@ public class CourseService implements CourseMetier {
     @Override
     public Course findOne(String id) {
         return courseRepository.getOne(id);
+    }
+
+    @Override
+    public Page<Course> searchCourse(String t, Pageable pageable) {
+        return courseRepository.searchCourse(t,pageable);
     }
 }

@@ -44,6 +44,13 @@ public class CourseSession implements Serializable {
     public CourseSession() {
     }
 
+    public CourseSession(LocalDate startDate, LocalDate endEnd, Location location, Course course) {
+        this.startDate = startDate;
+        this.endEnd = endEnd;
+        this.location = location;
+        this.course = course;
+    }
+
     public CourseSession(String available, LocalDate startDate, LocalDate endEnd, int nbplaces, Location location, Course course) {
         this.available = available;
         this.startDate = startDate;

@@ -19,4 +19,5 @@ public interface CourseSessionRepository extends JpaRepository<CourseSession,Lon
 
     @Query("select cs from CourseSession cs join cs.location l where l.city =?1 ")
     public Page<CourseSession> searchByCity(String city, Pageable pageable);
+
 }

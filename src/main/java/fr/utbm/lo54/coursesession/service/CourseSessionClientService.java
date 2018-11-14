@@ -43,4 +43,9 @@ public class CourseSessionClientService implements CourseSessionClientMetier {
     public CourseSessionClient findOne(Long id) {
         return courseSessionClientRepository.getOne(id);
     }
+
+    @Override
+    public int nbInscrits(Long clientId, Long courseSessionId) {
+        return courseSessionClientRepository.nbInscrits(clientId,courseSessionId);
+    }
 }
