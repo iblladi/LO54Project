@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="layout">
+<head>
+<meta charset="utf-8"/>
+
+<title>Accès refusé &#x26A0;</title>
+
+</head>
+<body>
+	<div layout:fragment="content">
+			<div class="container col-lg-offset-3 col-lg-6" style="margin-top: 10%" >
+				<div class="panel panel-danger">
+					<div class="panel-heading"><h4>ERREUR 403</h4></div>
+					<div class="panel-body" th:object="${profil}">
+						<h3 class="text-danger"><center><b>Vous n'êtes pas autorisés à accéder ou à effectuer cette action</b><br></br> &#x26A0;</center></h3>
+					</div>	
+					
+				</div>
+	
+			</div>
+
+	</div>
+</body>
+
+</html>

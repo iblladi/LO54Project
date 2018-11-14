@@ -22,21 +22,22 @@ public class Client implements Serializable {
     private String firstName;
 
     @NotNull
-    private String address;
-
-    @NotNull
-    private String phone;
-
     private String email;
 
     @NotNull
     private String password;
 
     @NotNull
+    private String phone;
+
+    @NotNull
+    private String address;
+
+    @NotNull
     private boolean activated = true;
 
     @NotNull
-    private String role;
+    private String role = "CLIENT";
 
     @OneToMany(mappedBy = "courseSession")
     private Collection<CourseSessionClient> couseSessionClients;
@@ -44,7 +45,16 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String lastName, String firstName, String address, String phone, String email, String password, String role) {
+    public Client(@NotNull String lastName, @NotNull String firstName, @NotNull String address, @NotNull String phone, @NotNull String email, @NotNull String password) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Client(@NotNull String lastName, @NotNull String firstName, @NotNull String address, @NotNull String phone, @NotNull String email, @NotNull String password, @NotNull String role) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.address = address;

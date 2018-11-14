@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="layout">
+<head>
+<meta charset="utf-8"/>
+
+<title>Erreur &#x26A0;</title>
+
+</head>
+
+
+<body onload="myFunction()">
+	<div layout:fragment="content">
+		
+			<div class="container">
+			<nav aria-label="navigation">
+			  <ul class="pager">
+			    <li class="previous"><a href="javascript:history.back()" title="Précédent"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Retour</a></li>
+			  </ul>
+			</nav>
+			</div>
+	
+			<div class=" row container-fluid col-lg-offset-3 col-lg-6 " style="margin-top: 5%" >
+				<div class="panel panel-danger">
+					<div class="panel-heading"><h4>Erreur</h4></div>
+					<div class="panel-body" th:object="${message}">
+						<h3 class="text-danger"><center><b th:text="${message}"></b><br></br> <b>&#x26A0;</b></center></h3>
+						<br></br>
+							<center><h6 class="text-info">**Redirection vers la page précédente**<br></br> dans <b><span id="countdowntimer">6</span> </b> seconds</h6></center>
+							<center><i class="fa fa-spinner fa-spin" style="font-size:24px"></i></center>
+					</div>	
+				</div>
+	
+			</div>
+
+			<!-- Countdown number -->
+			<script type="text/javascript">
+			    var timeleft = 6;
+			    var downloadTimer = setInterval(function(){
+			    timeleft--;
+			    document.getElementById("countdowntimer").textContent = timeleft;
+			    },1000);
+			</script>
+
+			<!-- Redirection vers page précédente -->
+			<script>
+			function myFunction() {
+			    setTimeout(function(){ window.location.href="javascript:history.back()"; }, 6000);
+			}
+			</script>
+			
+	</div>
+	
+</body>
+
+</html>
