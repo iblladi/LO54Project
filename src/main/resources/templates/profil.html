@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="layout">
+<head>
+<meta charset="utf-8"/>
+
+<title>Votre profil</title>
+
+</head>
+<body>
+	<div layout:fragment="content">
+			<div class="container col-lg-offset-3 col-lg-6" style="padding-left: 100px;padding-right: 100px">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Informations personnelles</div>
+					<div class="panel-body" th:object="${profil}">
+						<div>
+							<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<label style="text-decoration: underline;"><b> Email : </b></label>
+							<label th:text="*{email}"></label>
+						</div><br></br>
+						<div>
+							<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<label style="text-decoration: underline;"><b> Nom : </b></label>
+							<label th:text="*{lastName}"></label>
+						</div><br></br>
+						<div>
+							<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<label style="text-decoration: underline;"><b> Prénom : </b></label>
+							<label th:text="*{firstName}"></label>
+						</div><br></br>
+
+						<div>
+							<span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<label style="text-decoration: underline;"><b> Email : </b></label>
+							<label th:text="*{email}"></label>
+						</div><br></br>
+						<div>
+							<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;<label style="text-decoration: underline;"><b> Téléphone : </b></label>
+							<label th:text="*{phone}"></label>
+						</div><br></br>
+						<div>
+							<span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;<label style="text-decoration: underline;"><b> Adresse : </b></label>
+							<label th:text="*{address}"></label>
+						</div><br></br>
+					</div>	
+					
+				</div>
+	
+			</div>
+
+	</div>
+</body>
+
+</html>

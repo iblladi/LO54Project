@@ -19,8 +19,16 @@ public class ClientController {
 
     @RequestMapping(value= {"/index","/"})
     public String index(Model model, Principal p, HttpServletRequest request) {
-        List<Client> clients = clientMetier.listClient();
-        model.addAttribute("listclients", clients);
+        Client client = clientMetier.findByEmail(p.getName());
+        model.addAttribute("profil", client);
         return "index";
+    }
+
+    /*PROFIL*/
+    @RequestMapping(value="/profil")
+    public String profil(Model model,Principal p,HttpServletRequest request) {
+        Client client = clientMetier.findByEmail(p.getName());
+        model.addAttribute("profil", client);
+        return "profil";
     }
 }

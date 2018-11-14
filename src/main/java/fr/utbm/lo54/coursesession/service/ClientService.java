@@ -43,4 +43,9 @@ public class ClientService implements ClientMetier {
     public Client findOne(Long id) {
         return clientRepository.getOne(id);
     }
+
+    public Client findByEmail(String email){
+        return clientRepository.findByEmail(email);
+    }
+
 }

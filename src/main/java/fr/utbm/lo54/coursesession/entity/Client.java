@@ -32,19 +32,26 @@ public class Client implements Serializable {
     @NotNull
     private String password;
 
+    @NotNull
+    private boolean activated = true;
+
+    @NotNull
+    private String role;
+
     @OneToMany(mappedBy = "courseSession")
     private Collection<CourseSessionClient> couseSessionClients;
 
     public Client() {
     }
 
-    public Client(String lastName, String firstName, String address, String phone, String email, String password) {
+    public Client(String lastName, String firstName, String address, String phone, String email, String password, String role) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.address = address;
         this.phone = phone;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public Long getId() {
@@ -103,6 +110,22 @@ public class Client implements Serializable {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -115,12 +138,13 @@ public class Client implements Serializable {
                 Objects.equals(phone, client.phone) &&
                 Objects.equals(email, client.email) &&
                 Objects.equals(password, client.password) &&
+                Objects.equals(role, client.role) &&
                 Objects.equals(couseSessionClients, client.couseSessionClients);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastName, firstName, address, phone, email, password, couseSessionClients);
+        return Objects.hash(id, lastName, firstName, address, phone, email, password, role, couseSessionClients);
     }
 
     @Override
@@ -133,6 +157,7 @@ public class Client implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 ", couseSessionClients=" + couseSessionClients +
                 '}';
     }

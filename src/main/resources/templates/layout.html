@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <style>
+        body,html {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{index}"><img
+                        src="http://audienceexterne-maroc.satecgroup.com/img/Logo_400x195_intelcom.gif"
+                        width="65" height="20" class="d-inline-block align-top" alt="logoIntelcom"/></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion des clients<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{listPersonnel}">Liste des clients</a></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" role="seperator" class="divider"></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{formClient}">Ajouter un client</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cours
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li ><a th:href="@{listCourse}">Liste des cours</a></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" role="seperator" class="divider"></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{formCourse}">Nouveau cours</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" sec:authorize="hasRole('ROLE_COMMERCIAL')">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestion des contrats
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li sec:authorize="hasRole('ROLE_COMMERCIAL')"><a th:href="@{listContrat}">Liste des contrats</a></li>
+                        <li sec:authorize="hasRole('ROLE_COMMERCIAL')" role="seperator" class="divider"></li>
+                        <li sec:authorize="hasRole('ROLE_COMMERCIAL')"><a th:href="@{formContrat}">Nouveau contrat</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" sec:authorize="hasAnyRole('ROLE_CHEF','ROLE_COMMERCIAL')">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestion des projets
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li sec:authorize="hasAnyRole('ROLE_CHEF','ROLE_COMMERCIAL')"><a th:href="@{listProjet}">Liste des projets</a></li>
+                        <li sec:authorize="hasAnyRole('ROLE_CHEF')" role="seperator" class="divider"></li>
+                        <li sec:authorize="hasAnyRole('ROLE_CHEF')"><a th:href="@{formProjet}">Nouveau projet</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" sec:authorize="hasAnyRole('ROLE_EMPLOYE')">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestion des tâches
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li sec:authorize="hasAnyRole('ROLE_EMPLOYE')"><a th:href="@{listMyTache}">Liste mes tâches</a></li>
+                    </ul>
+                </li>
+
+                
+
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a onclick="return confirm('Voulez-vous vraiment vous déconnecter ?')" th:href="@{/logout}" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+</header>
+
+<section layout:fragment="content">
+
+
+</section>
+
+<div style="padding-top: 35px">
+    <footer style="margin-top: 20px">
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+
+            <div class="container">
+                <h6 style="color: #3498DB;"> UTBM LO54 &#9400;2018 </h6>
+                <ul class="nav navbar-nav navbar-right">
+				        <span sec:authorize="isAuthenticated()">
+	                | Logged user: <span sec:authentication="name"></span> |
+	                Roles: <span sec:authentication="principal.authorities"></span> |
+	                <a th:href="@{/logout}">Sign Out</a>
+	            	</span>
+                </ul>
+
+            </div>
+
+        </nav>
+    </footer>
+</div>
+
+</body>
+</html>

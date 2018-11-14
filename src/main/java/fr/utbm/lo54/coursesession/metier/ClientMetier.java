@@ -17,4 +17,7 @@ public interface ClientMetier {
     public boolean clientExists(Client c);
 
     public Client findOne(Long id);
+
+    public Client findByEmail(String email);
+
 }
