@@ -17,7 +17,7 @@ import java.security.Principal;
 public class ClientController {
 
     @Autowired
-    ClientMetier clientMetier;
+    private ClientMetier clientMetier;
 
     @RequestMapping(value= {"/index","/"}, method=RequestMethod.GET)
     public String index(Model model, Principal p, HttpServletRequest request) {

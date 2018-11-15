@@ -46,7 +46,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cours
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li ><a th:href="@{listCourse}">Liste des cours</a></li>
+                        <li ><a th:href="@{cours}">Liste des cours</a></li>
                         <li sec:authorize="hasRole('ROLE_ADMIN')" role="seperator" class="divider"></li>
                         <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{formCourse}">Nouveau cours</a></li>
                     </ul>

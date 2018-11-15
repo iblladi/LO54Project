@@ -19,15 +19,19 @@ public class Course implements Serializable {
     @NotNull
     private String title;
 
+    @Lob
+    private String description;
+
     @OneToMany(mappedBy = "course")
     private Collection<CourseSession> courseSessions;
 
     public Course() {
     }
 
-    public Course(String id, String title) {
+    public Course(String id, String title, String description) {
         this.id = id;
         this.title = title;
+        this.description = description;
     }
 
     public String getId() {
@@ -46,18 +50,29 @@ public class Course implements Serializable {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
         return Objects.equals(id, course.id) &&
-                Objects.equals(title, course.title);
+                Objects.equals(title, course.title) &&
+                Objects.equals(description, course.description) &&
+                Objects.equals(courseSessions, course.courseSessions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title);
+        return Objects.hash(id, title, description, courseSessions);
     }
 
     @Override
@@ -65,6 +80,8 @@ public class Course implements Serializable {
         return "Course{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", courseSessions=" + courseSessions +
                 '}';
     }
 }
