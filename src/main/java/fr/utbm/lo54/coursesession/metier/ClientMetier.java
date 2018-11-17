@@ -20,4 +20,6 @@ public interface ClientMetier {
 
     public Client findByEmail(String email);
 
+    public String searchRegistredInSession(Long id,Long id1);
+
 }

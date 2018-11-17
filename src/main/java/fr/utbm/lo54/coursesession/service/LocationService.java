@@ -43,4 +43,5 @@ public class LocationService implements LocationMetier {
     public Location findOne(Long id) {
         return locationRepository.getOne(id);
     }
+
 }

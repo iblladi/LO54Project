@@ -17,5 +17,5 @@ public interface LocationMetier {
     public boolean LocationExists(Location c);
 
     public Location findOne(Long id);
-    
+
 }

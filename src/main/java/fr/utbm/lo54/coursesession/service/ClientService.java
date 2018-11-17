@@ -54,4 +54,8 @@ public class ClientService implements ClientMetier {
     public boolean clientExists(Client c) {
         return findByEmail(c.getEmail()) != null;
     }
+
+    public String searchRegistredInSession(Long id,Long id1){
+        return clientRepository.searchRegistredInSession(id,id1);
+    }
 }

@@ -5,7 +5,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Client implements Serializable {
@@ -39,8 +41,9 @@ public class Client implements Serializable {
     @NotNull
     private String role = "CLIENT";
 
-    @OneToMany(mappedBy = "courseSession")
-    private Collection<CourseSessionClient> couseSessionClients;
+    @ManyToMany
+    @JoinTable(name = "client_coursesessions", joinColumns = { @JoinColumn(name = "client_id")}, inverseJoinColumns = {@JoinColumn(name = "courseSession_id")})
+    private Set<CourseSession> courseSessions = new HashSet<>();
 
     public Client() {
     }
@@ -136,6 +139,14 @@ public class Client implements Serializable {
         this.activated = activated;
     }
 
+    public Set<CourseSession> getCourseSessions() {
+        return courseSessions;
+    }
+
+    public void setCourseSessions(Set<CourseSession> courseSessions) {
+        this.courseSessions = courseSessions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -148,13 +159,12 @@ public class Client implements Serializable {
                 Objects.equals(phone, client.phone) &&
                 Objects.equals(email, client.email) &&
                 Objects.equals(password, client.password) &&
-                Objects.equals(role, client.role) &&
-                Objects.equals(couseSessionClients, client.couseSessionClients);
+                Objects.equals(role, client.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastName, firstName, address, phone, email, password, role, couseSessionClients);
+        return Objects.hash(id, lastName, firstName, address, phone, email, password, role);
     }
 
     @Override
@@ -168,7 +178,6 @@ public class Client implements Serializable {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", couseSessionClients=" + couseSessionClients +
                 '}';
     }
 }

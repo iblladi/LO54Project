@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -49,13 +50,13 @@ public class ClientController {
     }
 
     @RequestMapping(value="/save",method=RequestMethod.POST)
-    public String addClient(Model model,@ModelAttribute("client") Client cl){
+    public String addClient(Model model, @ModelAttribute("client") Client cl, final RedirectAttributes redirectAttributes){
         if (clientMetier.clientExists(cl)) {
             model.addAttribute("message", "Email/Client déjà existant");
             return "erreurs/erreur";
         }
         clientMetier.saveClient(cl);
-        System.out.println(cl.getEmail());
+        redirectAttributes.addFlashAttribute("message","Inscription a été effectué avec succès.");
         return "redirect:index";
     }
 

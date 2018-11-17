@@ -11,6 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
 public class CoursesessionApplication implements CommandLineRunner {
@@ -26,9 +30,6 @@ public class CoursesessionApplication implements CommandLineRunner {
 
     @Autowired
     private CourseSessionRepository courseSessionRepository;
-
-    @Autowired
-    private CourseSessionClientRepository courseSessionClientRepository;
 
 
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -91,8 +92,6 @@ public class CoursesessionApplication implements CommandLineRunner {
 
         CourseSession cs = new CourseSession(LocalDate.of(2018, 12, 9), LocalDate.of(2019, 1, 8), l1, crs1);
         courseSessionRepository.save(cs);
-
-
 
     }
 }

@@ -48,12 +48,27 @@ public class CourseSessionService implements CourseSessionMetier {
     }
 
     @Override
-    public Page<CourseSession> searchByCity(String city, Pageable pageable) {
-        return courseSessionRepository.searchByCity(city, pageable);
+    public Page<CourseSession> searchByCity(String id,String city, Pageable pageable) {
+        return courseSessionRepository.searchByCity(id, city, pageable);
     }
 
     @Override
     public Page<CourseSession> searchByDateAndAvailable(LocalDate date, Pageable pageable) {
         return courseSessionRepository.searchByDateAndAvailable(date, pageable);
     }
+
+    @Override
+    public Page<CourseSession> searchMySessions(Long id,  Pageable pageable) {
+        return courseSessionRepository.searchMySessions(id , pageable);
+    }
+
+    public Long pourcentageInscrits(String id){
+        return courseSessionRepository.pourcentageInscrits(id);
+    }
+
+    public Long nbInscrits(String id){
+        return courseSessionRepository.nbInscrits(id);
+    }
+
+
 }
