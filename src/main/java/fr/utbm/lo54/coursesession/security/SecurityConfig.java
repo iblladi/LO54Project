@@ -61,10 +61,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anonymous()
                     .and()
                 .authorizeRequests()
-                    .antMatchers("/index","/","/register")
+                    .antMatchers("/index","/","/register","/session","/cours")
                         .permitAll()
                     .antMatchers(HttpMethod.POST, "/save")
                         .permitAll()
+					.antMatchers(HttpMethod.POST,"/validate")
+						.permitAll()
                     .anyRequest()
                         .authenticated()//	QUE SI LE PERSONNEL EST AUTHENTIFIÉ
                             .and()
