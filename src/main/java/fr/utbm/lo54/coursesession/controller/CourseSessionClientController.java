@@ -25,6 +25,11 @@ public class CourseSessionClientController {
     @RequestMapping(value = "/validate",method = RequestMethod.GET)
     public String preInscription(Model model, Principal p, Long id, final RedirectAttributes redirectAttributes){
 
+        /*if(p.getName() == null){
+            model.addAttribute("client", new Client());
+            return "form/registration";
+        }*/ //Registration + PreInscription same time
+
 
         Client c =clientMetier.findByEmail(p.getName());
 

@@ -10,7 +10,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,13 +32,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(securedEnabled=true) //ACTIVER L'ANNOTATION @SECURED POUR LES CONTROLLEURS DE LA COUCHE WEB
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	
+
+
 	/* BEAN QUI PERMET L'ENCODAGE DU MOT DE PASSE */
 	@Bean
 	public PasswordEncoder passwordEncoder(){
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		return encoder;
 	}
+
 	
 	/* CONFIGURATION DE LA CONNEXION AVEC UN IDENTIFIANT ET UN MOT DE PASSE DANS LA DATABASE */
 	@Autowired
