@@ -26,6 +26,8 @@ public interface CourseSessionMetier {
 
     public Page<CourseSession> searchByDateAndAvailable(@Param("d") LocalDate date, Pageable pageable);
 
+    public Page<CourseSession> searchByCityAndDate(@Param("id") String id,@Param("d") LocalDate date,@Param("city") String city, Pageable pageable);
+
     public Page<CourseSession> searchMySessions(Long id, Pageable pageable);
 
     public Long pourcentageInscrits(String id);
