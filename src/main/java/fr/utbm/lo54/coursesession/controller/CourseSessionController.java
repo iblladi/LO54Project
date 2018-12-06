@@ -82,6 +82,54 @@ public class CourseSessionController {
     }
 
 
+    @RequestMapping(value = "/sessions",method= RequestMethod.GET)
+    public String listSessions(Model model, @ModelAttribute("crs") Course crs1,
+                              @RequestParam(name="id") String id,
+                              @RequestParam(name="date",required=false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+                              @RequestParam(name="page",defaultValue="0")int pg,
+                              @RequestParam(name="page1",defaultValue="0")int pg1,
+                              @RequestParam(name="size",defaultValue="4")int s,
+                              @RequestParam(name="motCle",defaultValue="%")String mc) {
+
+        List<Location> l = locationMetier.listLocation();
+        Course crs = courseMetier.findOne(id);
+        Long nbInscrits = courseSessionMetier.nbInscrits(id);
+
+        if (date == null) {
+            Page<CourseSession> cs = courseSessionMetier.searchByCity(id, "%" + mc + "%", new PageRequest(pg, s));
+            model.addAttribute("listcs", cs.getContent());
+            int[] pages = new int[cs.getTotalPages()];
+            model.addAttribute("pages", pages);
+            model.addAttribute("pageCourante", pg);
+            model.addAttribute("motCle", mc);
+            model.addAttribute("crs", crs);
+            model.addAttribute("nbinsc", nbInscrits);
+            model.addAttribute("crsession", cs);
+            model.addAttribute("listville", l);
+            return "list/sessions";
+
+        }
+        Page<CourseSession> cs = courseSessionMetier.searchByCityAndDate(id, date, "%" + mc + "%", new PageRequest(pg, s));
+        model.addAttribute("listcs", cs.getContent());
+        int[] pages = new int[cs.getTotalPages()];
+        //model.addAttribute("listcs1",cs1.getContent());
+        //int[] pages1 = new int [cs1.getTotalPages()];
+        model.addAttribute("pages", pages);
+        //model.addAttribute("pages1", pages1);
+        model.addAttribute("pageCourante", pg);
+        //model.addAttribute("pageCourante1", pg1);
+        model.addAttribute("motCle", mc);
+        model.addAttribute("date", date);
+        model.addAttribute("crs", crs);
+        model.addAttribute("nbinsc", nbInscrits);
+        model.addAttribute("crsession", cs);
+        //model.addAttribute("crsession1",cs1);
+        //model.addAttribute("id", crs1.getId());
+        model.addAttribute("listville", l);
+        return "list/sessions";
+    }
+
+
     @RequestMapping(value = "/MyCourseSessionCart",method = RequestMethod.GET)
     public String myCourseSessionCart(Model model, Principal p, @RequestParam(name="page",defaultValue="0")int pg,
                                       @RequestParam(name="size",defaultValue="4")int s){

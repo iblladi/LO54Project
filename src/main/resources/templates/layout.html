@@ -53,37 +53,6 @@
                     </ul>
                 </li>
 
-                <li class="dropdown" sec:authorize="hasRole('ROLE_COMMERCIAL')">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestion des contrats
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li sec:authorize="hasRole('ROLE_COMMERCIAL')"><a th:href="@{listContrat}">Liste des contrats</a></li>
-                        <li sec:authorize="hasRole('ROLE_COMMERCIAL')" role="seperator" class="divider"></li>
-                        <li sec:authorize="hasRole('ROLE_COMMERCIAL')"><a th:href="@{formContrat}">Nouveau contrat</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown" sec:authorize="hasAnyRole('ROLE_CHEF','ROLE_COMMERCIAL')">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestion des projets
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li sec:authorize="hasAnyRole('ROLE_CHEF','ROLE_COMMERCIAL')"><a th:href="@{listProjet}">Liste des projets</a></li>
-                        <li sec:authorize="hasAnyRole('ROLE_CHEF')" role="seperator" class="divider"></li>
-                        <li sec:authorize="hasAnyRole('ROLE_CHEF')"><a th:href="@{formProjet}">Nouveau projet</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown" sec:authorize="hasAnyRole('ROLE_EMPLOYE')">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestion des tâches
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li sec:authorize="hasAnyRole('ROLE_EMPLOYE')"><a th:href="@{listMyTache}">Liste mes tâches</a></li>
-                    </ul>
-                </li>
-
-
-
-
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

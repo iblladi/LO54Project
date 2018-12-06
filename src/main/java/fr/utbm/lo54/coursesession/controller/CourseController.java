@@ -28,4 +28,16 @@ public class CourseController {
         model.addAttribute("motCle", mc);
         return "list/cours";
     }
+
+    @RequestMapping(value= {"/coursDispo"},method= RequestMethod.GET)
+    public String listCourseDispo(Model model, @RequestParam(name="page",defaultValue="0")int pg,
+                             @RequestParam(name="size",defaultValue="4")int s, @RequestParam(name="motCle",defaultValue="")String mc) {
+        Page<Course> c = courseMetier.searchCourse("%"+mc+"%", new PageRequest(pg, s));
+        model.addAttribute("listcourse",c.getContent());
+        int[] pages = new int [c.getTotalPages()];
+        model.addAttribute("pages", pages);
+        model.addAttribute("pageCourante", pg);
+        model.addAttribute("motCle", mc);
+        return "list/coursDispo";
+    }
 }
