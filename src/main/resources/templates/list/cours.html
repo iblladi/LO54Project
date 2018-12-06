@@ -12,6 +12,17 @@
 <div layout:fragment="content">
 
     <div class="row">
+        <header>
+            <div class="container-fluid">
+                <div class="alert alert-success " id="success-alert" th:if="${message}" th:text="${message}">
+                </div>
+                <script>
+                    $("#success-alert").fadeTo(2000, 800).slideUp(800, function(){
+                        $("#success-alert").slideUp(800);
+                    });
+                </script>
+            </div>
+        </header>
         <div class="container" style="float: right">
             <div class="col-lg-4">
                 <form th:action="@{/cours}" method="get">

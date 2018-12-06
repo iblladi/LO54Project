@@ -60,21 +60,24 @@ public class CourseSessionClientController {
         return "redirect:MyCourseSessionCart";
     }
 
+    /*à revoir suppression Client id=1*/
     @RequestMapping(value= "/inscrCliSess", method = RequestMethod.GET)
     public String inscrCliSess(Model model, Long id){
         CourseSession crs = courseSessionMetier.findOne(id);
         model.addAttribute("client", new Client());
-        model.addAttribute("crs",crs.getId());
+        model.addAttribute("cs",crs.getId());
         return "form/inscrCliSess";
     }
 
     @RequestMapping(value="/preInsc",method=RequestMethod.POST)
-    public String preInsc(Model model, @ModelAttribute("client") Client cl, @RequestParam("id")  Long id, final RedirectAttributes redirectAttributes){
+    public String preInsc(Model model, @ModelAttribute("client") Client cl, @RequestParam("cs")  Long cs, final RedirectAttributes redirectAttributes){
         if (clientMetier.clientExists(cl)) {
             model.addAttribute("message", "Email/Client déjà existant");
             return "erreurs/erreur";
         }
-        CourseSession crs = courseSessionMetier.findOne(id);
+        clientMetier.saveClient(cl);
+
+        CourseSession crs = courseSessionMetier.findOne(cs);
         cl.getCourseSessions().add(crs);
 
         crs.getClients().add(cl);
@@ -85,7 +88,7 @@ public class CourseSessionClientController {
         }
 
         crs.setNbrestants(crs.getNbrestants() - 1);
-        clientMetier.saveClient(cl);
+        clientMetier.updateClient(cl);
         redirectAttributes.addFlashAttribute("message","Pré-inscription à la formation "+crs.getCourse().getTitle()+" a été effectué avec succès.");
         return "redirect:index";
     }
