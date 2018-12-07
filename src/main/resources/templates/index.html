@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout1">
 <head>
     <title>Accueil</title>
     <meta charset="utf-8"/>
@@ -24,24 +26,7 @@
 
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{index}" > LO54 </a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a th:href="@{/coursDispo}"> <span class="glyphicon glyphicon-certificate"></span> Cours </a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a th:href="@{/register}"> <span class="glyphicon glyphicon-certificate"></span> Inscription </a></li>
-                <li><a th:href="@{/login}" ><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
-            </ul>
-        </div>
-    </nav>
-
-</header>
+<div layout:fragment="content">
 <section class="row">
     <div class="container-fluid">
         <div class="alert alert-success " id="success-alert" th:if="${message}" th:text="${message}">

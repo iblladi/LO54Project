@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout1">
 <head>
     <title>Accueil</title>
     <meta charset="utf-8"/>
@@ -27,21 +29,7 @@
 </head>
 
 <body>
-<header>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{index}" > LO54 </a>
-            </div>
-
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a th:href="@{/login}" ><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
-            </ul>
-        </div>
-    </nav>
-
-</header>
+<div layout:fragment="content">
 
     <div class="container" style="padding-left: 69px;padding-right: 69px">
         <div class="panel panel-default">
