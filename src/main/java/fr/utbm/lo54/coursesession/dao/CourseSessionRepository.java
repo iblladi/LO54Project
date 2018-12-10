@@ -32,5 +32,4 @@ public interface CourseSessionRepository extends JpaRepository<CourseSession,Lon
     @Query(value = "SELECT COUNT(*) FROM CLIENT_COURSESESSIONS CCS INNER JOIN COURSE_SESSION CS ON CCS.course_session_id = CS.course_session_id WHERE CS.COURSE_ID= ?1", nativeQuery = true)
     public Long nbInscrits(String id);
 
-
 }

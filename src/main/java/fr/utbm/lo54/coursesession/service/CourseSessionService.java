@@ -78,4 +78,5 @@ public class CourseSessionService implements CourseSessionMetier {
         return courseSessionRepository.searchByCityAndDate(id,date,city,pageable);
     }
 
+
 }

@@ -62,10 +62,12 @@
                             <br>
                             <br>
                             <div>
-                                <div sec:authorize="hasRole('ROLE_ADMIN')" style="float: right"><a class="btn btn-danger" onclick="return confirm('Êtes vous sûr de vouloir supprimer ce personnel?')" th:href="@{delete(id=${crs.id})}"><span class="glyphicon glyphicon-trash"></span></a></div>
-                                <br>
-                                <br>
+
                                 <div sec:authorize="hasRole('ROLE_ADMIN')" style="float: right"><a class="btn btn-warning" th:href="@{editCourse(id=${crs.id})}"><span class="glyphicon glyphicon-edit"></span> </a></div>
+                                <br>
+                                <br>
+                                <div sec:authorize="hasRole('ROLE_ADMIN')" style="float: right"><a th:href="@{formCourseSession(id=${crs.id})}">Ajouter une session</a></div>
+
                             </div>
                         </div>
                     </div>

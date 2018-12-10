@@ -69,9 +69,6 @@
                         <td th:text="${nbinsc}+'/'+${cs.nbplaces}+' ('+${nbinsc}*100/${cs.nbplaces}+' %)'"></td>
                         <td th:text="${cs.location.city}"></td>
                         <td><a class="btn btn-primary" th:href="@{inscrCliSess(id=${cs.id})}"> S'incrire </a></td>
-                        <td sec:authorize="hasRole('ROLE_ADMIN')" ><a class="btn btn-danger" onclick="return confirm('Êtes vous sûr de vouloir supprimer ce personnel?')" th:href="@{delete(id=${cs.id})}"><span class="glyphicon glyphicon-trash"></span></a></td>
-                        <td sec:authorize="hasRole('ROLE_ADMIN')" ><a class="btn btn-warning" th:href="@{editcs(id=${cs.id})}"><span class="glyphicon glyphicon-edit"></span> </a></td>
-
 
                     </tr>
                     </tbody>

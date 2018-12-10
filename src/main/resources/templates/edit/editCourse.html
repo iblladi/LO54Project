@@ -5,29 +5,28 @@ layout:decorator="layout">
 <head>
 <meta charset="utf-8"/>
 
-<title>Ajouter Cours</title>
+<title>Modifier Cours</title>
 
 </head>
 <body>
 	<div layout:fragment="content">
 		<div class="container">
 			<div class="panel panel-default">
-				<div class="panel-heading">Ajouter un cours</div>
+				<div class="panel-heading">Modification Course <h6 th:text="${cr.title}"></h6></div>
 				<div class="panel-body">
-				<form th:action="@{saveCourse}" method="post" enctype="multipart/form-data" th:object="${cr}">
+				<form th:action="@{updateCourse}" method="post" enctype="multipart/form-data">
 					<div class="form-group">
-						<label class="control-label">Course ID :</label>
-						<input class="form-control" type="text" name="id" required="required"/>
+						<input type="hidden" name="id" th:value="${cr.id}"/>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label">Title :</label>
-						<input class="form-control" type="text" name="title" required="required"/>
+						<input class="form-control" type="text" name="title"  required="required" th:value="${cr.title}"/>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label">Description :</label>
-						<textarea class="form-control" rows="8" name="description" placeholder="Entrez une description !"></textarea>
+						<textarea class="form-control" rows="8" name="description" th:value="${cr.description}"></textarea>
 					</div>
 					
 					<div><button type="submit" class="btn btn-primary">Save</button></div>

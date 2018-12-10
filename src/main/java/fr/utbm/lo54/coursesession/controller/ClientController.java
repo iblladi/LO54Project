@@ -52,11 +52,11 @@ public class ClientController {
     @RequestMapping(value="/save",method=RequestMethod.POST)
     public String addClient(Model model, @ModelAttribute("client") Client cl, final RedirectAttributes redirectAttributes){
         if (clientMetier.clientExists(cl)) {
-            model.addAttribute("message", "Email/Client déjà existant");
+            model.addAttribute("message", "Email déjà utilisé");
             return "erreurs/erreur";
         }
         clientMetier.saveClient(cl);
-        redirectAttributes.addFlashAttribute("message","Inscription a été effectué avec succès.");
+        redirectAttributes.addFlashAttribute("message","Inscription a été effectuée avec succès.");
         return "redirect:index";
     }
 

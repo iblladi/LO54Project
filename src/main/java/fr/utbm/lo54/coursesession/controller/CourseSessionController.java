@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -140,6 +142,44 @@ public class CourseSessionController {
         model.addAttribute("pages", pages);
         model.addAttribute("pageCourante", pg);
         return "list/MyCourseSessionCart";
+    }
+
+
+    /*Partie Administration*/
+
+    @Secured(value = "ROLE_ADMIN")
+    @RequestMapping(value = "/formCourseSession", method = RequestMethod.GET)
+    public String formCourseSession(Model model, String id){
+        model.addAttribute("course", courseMetier.findOne(id));
+        model.addAttribute("locations", locationMetier.listLocation());
+        model.addAttribute("crs",new CourseSession());
+        return "form/formCourseSession";
+    }
+
+    @RequestMapping(value = "/saveCourseSession" , method = RequestMethod.POST)
+    public String saveCourse(@ModelAttribute("crs") CourseSession crs,final RedirectAttributes redirectAttributes){
+        courseSessionMetier.saveCourseSession(crs);
+        redirectAttributes.addFlashAttribute("message","Création de la session a été effectuée avec succès.");
+        return "redirect:cours?id="+crs.getCourse().getId();
+    }
+
+    @Secured(value = "ROLE_ADMIN")
+    @RequestMapping(value="/editCourseSession",method=RequestMethod.GET)
+    public String editCourse(Model model, Long id){
+        model.addAttribute("courses", courseMetier.listCourse());
+        model.addAttribute("locations", locationMetier.listLocation());
+        model.addAttribute("crs",courseSessionMetier.findOne(id));
+        return "edit/editCourseSession";
+    }
+
+    @RequestMapping(value="/updateCourseSession",method=RequestMethod.POST)
+    public String udpateCourse(@ModelAttribute("crs") CourseSession crs,final RedirectAttributes redirectAttributes) {
+        crs.setAvailable(crs.getAvailable());
+        crs.setStartDate(crs.getStartDate());
+        crs.setEndDate(crs.getEndDate());
+        courseSessionMetier.updateCourseSession(crs);
+        redirectAttributes.addFlashAttribute("message","Modification de la session a été effectuée avec succès.");
+        return "redirect:session?id="+crs.getCourse().getId();
     }
 
 }

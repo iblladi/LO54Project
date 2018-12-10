@@ -34,6 +34,5 @@ public interface CourseSessionMetier {
 
     public Long nbInscrits(String id);
 
-
 }
 

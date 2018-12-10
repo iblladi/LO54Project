@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+	<meta charset="utf-8"/>
+
+	<title>Modifier une session</title>
+	<style type="text/css">
+		small{
+			color: red;
+		}
+
+	</style>
+
+
+</head>
+<body>
+
+
+<div layout:fragment="content">
+	<div class="container" style="padding-left: 69px;padding-right: 69px">
+		<div class="panel panel-default">
+			<div class="panel-heading">Modification</div>
+			<div class="panel-body">
+				<form th:action="@{updateCourseSession}" method="post" th:object="${crs}">
+
+					<div class="container">
+						<div class='col-md-5'>
+							<div class="form-group">
+								<input type="hidden" name="id" th:value="${crs.id}"/>
+								<label class="control-label">Début de session :</label>
+								<input type='text' id="startDate" th:field="*{startDate}" placeholder="Début" onfocus="(this.type='date')" class="form-control" min="2014-01-01"/>
+								<script type="text/javascript" th:inline="javascript">//<![CDATA[
+
+                                var input = document.getElementById("startDate");
+                                var today = new Date();
+                                var day = today.getDate();
+                                // Set month to string to add leading 0
+                                var mon = new String(today.getMonth()+1); //January is 0!
+                                var yr = today.getFullYear();
+
+                                if(mon.length < 2) { mon = "0" + mon; }
+
+                                var date = new String( yr + '-' + mon + '-' + day );
+
+                                input.disabled = false;
+                                input.setAttribute('min', date);
+
+
+
+                                //]]>
+
+								</script>
+							</div>
+						</div>
+						<div class='col-md-5'>
+							<div class="form-group">
+								<label class="control-label">Fin de session :</label>
+								<input type='text' id="endDate" th:field="*{endDate}"  placeholder="Fin" onfocus="(this.type='date')" class="form-control" min="2014-01-01"/>
+								<script type="text/javascript" th:inline="javascript">//<![CDATA[
+
+                                var input = document.getElementById("endDate");
+                                var today = new Date();
+                                var day = today.getDate();
+                                // Set month to string to add leading 0
+                                var mon = new String(today.getMonth()+1); //January is 0!
+                                var yr = today.getFullYear();
+
+                                if(mon.length < 2) { mon = "0" + mon; }
+
+                                var date = new String( yr + '-' + mon + '-' + day );
+
+                                input.disabled = false;
+                                input.setAttribute('min', date);
+
+
+
+                                //]]>
+
+								</script>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label>Disponibilité :</label>
+						<select th:field="${crs.available}" class="form-control">
+							<option th:value="Disponible" th:text="Disponible"></option>
+							<option th:value="Indisponible" th:text="Indisponible"></option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label">Site :</label>
+						<select th:field="*{location}" class="form-control"> <!-- on pointe sur le bean site qui provient du getter -->
+							<option th:each="location: ${locations}" th:value="${location.id}" th:text="${location.city}"></option> <!-- sites provient du controlleur modeladdattribute -->
+						</select>
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" th:object="${crs.course}" type="hidden" name="course" th:value="${crs.course.id}"/>
+					</div>
+
+					<div><button type="submit" class="btn btn-primary">Save</button></div>
+
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+</body>
+</html>

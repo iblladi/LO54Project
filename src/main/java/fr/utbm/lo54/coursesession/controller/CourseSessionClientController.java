@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.time.LocalDate;
 
 @Controller
 public class CourseSessionClientController {
@@ -46,7 +47,11 @@ public class CourseSessionClientController {
 
         cs.getClients().add(c);
 
-        if(cs.getNbrestants() == 0){
+        if(cs.getNbrestants() == 1){
+            cs.setAvailable("Indisponible");
+        }
+
+        if(cs.getNbrestants() == 0 || cs.getAvailable().equals("Indisponible")){
             model.addAttribute("message", "Plus de places disponibles");
             return "erreurs/erreur";
         }
@@ -72,7 +77,7 @@ public class CourseSessionClientController {
     @RequestMapping(value="/preInsc",method=RequestMethod.POST)
     public String preInsc(Model model, @ModelAttribute("client") Client cl, @RequestParam("cs")  Long cs, final RedirectAttributes redirectAttributes){
         if (clientMetier.clientExists(cl)) {
-            model.addAttribute("message", "Email/Client déjà existant");
+            model.addAttribute("message", "Email déjà utilisé");
             return "erreurs/erreur";
         }
 
@@ -82,14 +87,18 @@ public class CourseSessionClientController {
 
         crs.getClients().add(cl);
 
-        if(crs.getNbrestants() == 0){
+        if(crs.getNbrestants() == 1){
+            crs.setAvailable("Indisponible");
+        }
+
+        if(crs.getNbrestants() == 0 || crs.getAvailable().equals("Indisponible")){
             model.addAttribute("message", "Plus de places disponibles");
             return "erreurs/erreur";
         }
 
         crs.setNbrestants(crs.getNbrestants() - 1);
         clientMetier.saveClient(cl);
-        redirectAttributes.addFlashAttribute("message","Pré-inscription à la formation "+crs.getCourse().getTitle()+" a été effectué avec succès.");
+        redirectAttributes.addFlashAttribute("message","Pré-inscription à la formation "+crs.getCourse().getTitle()+" a été effectuée avec succès.");
         return "redirect:index";
     }
 
