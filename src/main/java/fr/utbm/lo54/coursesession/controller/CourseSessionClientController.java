@@ -38,6 +38,11 @@ public class CourseSessionClientController {
 
         CourseSession cs = courseSessionMetier.findOne(id);
 
+        if(cs.getNbrestants() == 0 || cs.getAvailable().equals("Indisponible")){
+            model.addAttribute("message", "Plus de places disponibles");
+            return "erreurs/erreur";
+        }
+
         if ((p.getName().equals(clientMetier.searchRegistredInSession(c.getId(),cs.getId())))){
             model.addAttribute("message", "Déjà Inscrit");
             return "erreurs/erreur";
@@ -47,13 +52,14 @@ public class CourseSessionClientController {
 
         cs.getClients().add(c);
 
-        if(cs.getNbrestants() == 1){
-            cs.setAvailable("Indisponible");
-        }
 
         if(cs.getNbrestants() == 0 || cs.getAvailable().equals("Indisponible")){
             model.addAttribute("message", "Plus de places disponibles");
             return "erreurs/erreur";
+        }
+
+        if(cs.getNbrestants() == 1){
+            cs.setAvailable("Indisponible");
         }
 
         cs.setNbrestants(cs.getNbrestants() - 1);
@@ -69,6 +75,10 @@ public class CourseSessionClientController {
     @RequestMapping(value= "/inscrCliSess", method = RequestMethod.GET)
     public String inscrCliSess(Model model, Long id){
         CourseSession crs = courseSessionMetier.findOne(id);
+        if(crs.getNbrestants() == 0 || crs.getAvailable().equals("Indisponible")){
+            model.addAttribute("message", "Plus de places disponibles");
+            return "erreurs/erreur";
+        }
         model.addAttribute("client", new Client());
         model.addAttribute("cs",crs.getId());
         return "form/inscrCliSess";
@@ -87,13 +97,15 @@ public class CourseSessionClientController {
 
         crs.getClients().add(cl);
 
-        if(crs.getNbrestants() == 1){
-            crs.setAvailable("Indisponible");
-        }
+
 
         if(crs.getNbrestants() == 0 || crs.getAvailable().equals("Indisponible")){
             model.addAttribute("message", "Plus de places disponibles");
             return "erreurs/erreur";
+        }
+
+        if(crs.getNbrestants() == 1){
+            crs.setAvailable("Indisponible");
         }
 
         crs.setNbrestants(crs.getNbrestants() - 1);
