@@ -25,21 +25,6 @@ public class LocationService implements LocationMetier {
     }
 
     @Override
-    public void updateLocation(Location l) {
-        saveLocation(l);
-    }
-
-    @Override
-    public void deleteLocation(Long id) {
-        locationRepository.deleteById(id);
-    }
-
-    @Override
-    public boolean LocationExists(Location l) {
-        return false;
-    }
-
-    @Override
     public Location findOne(Long id) {
         return locationRepository.getOne(id);
     }

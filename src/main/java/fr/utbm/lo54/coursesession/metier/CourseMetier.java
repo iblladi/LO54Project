@@ -15,10 +15,6 @@ public interface CourseMetier {
 
     public void updateCourse(Course c);
 
-    public void deleteCourse(String id);
-
-    public boolean CourseExists(Course c);
-
     public Course findOne(String id);
 
     public Page<Course> searchCourse(@Param("x") String t, Pageable pageable);

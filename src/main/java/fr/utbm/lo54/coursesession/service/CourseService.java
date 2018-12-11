@@ -32,16 +32,6 @@ public class CourseService implements CourseMetier {
     }
 
     @Override
-    public void deleteCourse(String id) {
-        courseRepository.deleteById(id);
-    }
-
-    @Override
-    public boolean CourseExists(Course c) {
-        return false;
-    }
-
-    @Override
     public Course findOne(String id) {
         return courseRepository.getOne(id);
     }

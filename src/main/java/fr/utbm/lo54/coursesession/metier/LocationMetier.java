@@ -10,12 +10,6 @@ public interface LocationMetier {
 
     public Location saveLocation(Location c);
 
-    public void updateLocation(Location c);
-
-    public void deleteLocation(Long id);
-
-    public boolean LocationExists(Location c);
-
     public Location findOne(Long id);
 
 }

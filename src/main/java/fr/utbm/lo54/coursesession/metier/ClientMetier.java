@@ -6,13 +6,10 @@ import java.util.List;
 
 public interface ClientMetier {
 
-    public List<Client> listClient();
-
     public Client saveClient(Client c);
 
     public void updateClient(Client c);
 
-    public void deleteClient(Long id);
 
     public boolean clientExists(Client c);
 

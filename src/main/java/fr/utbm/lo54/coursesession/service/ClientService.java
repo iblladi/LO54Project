@@ -19,11 +19,6 @@ public class ClientService implements ClientMetier {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public List<Client> listClient() {
-        return clientRepository.findAll();
-    }
-
-    @Override
     public Client saveClient(Client c) {
         c.setPassword(passwordEncoder.encode(c.getPassword()));
         return clientRepository.save(c);
@@ -33,12 +28,6 @@ public class ClientService implements ClientMetier {
     public void updateClient(Client c) {
         saveClient(c);
     }
-
-    @Override
-    public void deleteClient(Long id) {
-        clientRepository.deleteById(id);
-    }
-
 
     @Override
     public Client findOne(Long id) {

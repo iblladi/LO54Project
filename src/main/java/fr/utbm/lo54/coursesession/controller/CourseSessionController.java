@@ -66,19 +66,13 @@ public class CourseSessionController {
         Page<CourseSession> cs = courseSessionMetier.searchByCityAndDate(id,date,"%"+mc+"%", new PageRequest(pg, s));
         model.addAttribute("listcs",cs.getContent());
         int[] pages = new int [cs.getTotalPages()];
-        //model.addAttribute("listcs1",cs1.getContent());
-        //int[] pages1 = new int [cs1.getTotalPages()];
         model.addAttribute("pages", pages);
-        //model.addAttribute("pages1", pages1);
         model.addAttribute("pageCourante", pg);
-        //model.addAttribute("pageCourante1", pg1);
         model.addAttribute("motCle", mc);
         model.addAttribute("date",date);
         model.addAttribute("crs", crs);
         model.addAttribute("nbinsc", nbInscrits);
         model.addAttribute("crsession",cs);
-        //model.addAttribute("crsession1",cs1);
-        //model.addAttribute("id", crs1.getId());
         model.addAttribute("listville",l);
         return "list/session";
     }
@@ -114,19 +108,13 @@ public class CourseSessionController {
         Page<CourseSession> cs = courseSessionMetier.searchByCityAndDate(id, date, "%" + mc + "%", new PageRequest(pg, s));
         model.addAttribute("listcs", cs.getContent());
         int[] pages = new int[cs.getTotalPages()];
-        //model.addAttribute("listcs1",cs1.getContent());
-        //int[] pages1 = new int [cs1.getTotalPages()];
         model.addAttribute("pages", pages);
-        //model.addAttribute("pages1", pages1);
         model.addAttribute("pageCourante", pg);
-        //model.addAttribute("pageCourante1", pg1);
         model.addAttribute("motCle", mc);
         model.addAttribute("date", date);
         model.addAttribute("crs", crs);
         model.addAttribute("nbinsc", nbInscrits);
         model.addAttribute("crsession", cs);
-        //model.addAttribute("crsession1",cs1);
-        //model.addAttribute("id", crs1.getId());
         model.addAttribute("listville", l);
         return "list/sessions";
     }

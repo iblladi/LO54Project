@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
-import java.time.LocalDate;
 
 @Controller
 public class CourseSessionClientController {
@@ -27,12 +26,6 @@ public class CourseSessionClientController {
 
     @RequestMapping(value = "/validate",method = RequestMethod.GET)
     public String preInscription(Model model, Principal p, Long id, final RedirectAttributes redirectAttributes){
-
-        /*if(p.getName() == null){
-            model.addAttribute("client", new Client());
-            return "form/registration";
-        }*/ //Registration + PreInscription same time
-
 
         Client c =clientMetier.findByEmail(p.getName());
 

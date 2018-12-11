@@ -18,11 +18,6 @@ public class CourseSessionService implements CourseSessionMetier {
     private CourseSessionRepository courseSessionRepository;
 
     @Override
-    public List<CourseSession> listCourseSession() {
-        return courseSessionRepository.findAll();
-    }
-
-    @Override
     public CourseSession saveCourseSession(CourseSession cs) {
         return courseSessionRepository.save(cs);
     }
@@ -30,16 +25,6 @@ public class CourseSessionService implements CourseSessionMetier {
     @Override
     public void updateCourseSession(CourseSession cs) {
         saveCourseSession(cs);
-    }
-
-    @Override
-    public void deleteCourseSession(Long id) {
-        courseSessionRepository.deleteById(id);
-    }
-
-    @Override
-    public boolean CourseSessionExists(CourseSession cs) {
-        return false;
     }
 
     @Override
@@ -53,18 +38,8 @@ public class CourseSessionService implements CourseSessionMetier {
     }
 
     @Override
-    public Page<CourseSession> searchByDateAndAvailable(LocalDate date, Pageable pageable) {
-        return courseSessionRepository.searchByDateAndAvailable(date, pageable);
-    }
-
-    @Override
     public Page<CourseSession> searchMySessions(Long id,  Pageable pageable) {
         return courseSessionRepository.searchMySessions(id , pageable);
-    }
-
-    @Override
-    public Long pourcentageInscrits(String id){
-        return courseSessionRepository.pourcentageInscrits(id);
     }
 
     @Override
