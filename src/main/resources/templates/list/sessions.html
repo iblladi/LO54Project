@@ -82,7 +82,7 @@
     <div class="container">
         <ul class="nav nav-pills">
             <li th:each="p,status:${pages}" th:class="${status.index==pageCourante}?'active':''">
-                <a th:href="@{/session(page=${status.index},motCle=${motCle})}" th:text="${status.index}" />
+                <a th:href="@{/sessions(page=${status.index},motCle=${motCle})}" th:text="${status.index}" />
             </li>
         </ul>
     </div>
